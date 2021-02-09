@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DecisionsMobile.Views.WorkflowsPage"
+             xmlns:vm="clr-namespace:DecisionsMobile.ViewModels"
+             xmlns:local="clr-namespace:CustomRenderer"             
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:WorkflowsViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Settings" Clicked="Settings_Clicked" Order="Secondary" />
+        <ToolbarItem Text="Submissions" Clicked="FormSubmissions_Clicked" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="iOS" Value="workflow.png"/>
+            <On Platform="Android" Value="ic_action_category.png"/>
+        </OnPlatform>
+    </ContentPage.Icon>
+    <ContentPage.Content>
+        <StackLayout>
+            <ContentView IsVisible="{Binding ShowPlaceHolder}" Padding="15">
+                <Label>No mobile Workflows at this time.</Label>
+            </ContentView>
+            <ListView x:Name="WorkflowListView" 
+                ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                 HasUnevenRows="true"
+                 RefreshCommand="{Binding LoadItemsCommand}"
+                 IsPullToRefreshEnabled="true"
+                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                 CachingStrategy="RecycleElement"
+                 ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal"
+                                         Padding="10">
+                                <Image Source="{Binding ImageSource}"
+                                       HeightRequest="40"
+                                       WidthRequest="40"
+                                       Margin="10, 5, 10, 0"
+                                       VerticalOptions="Start"/>
+                                <StackLayout>
+                                    <Label Text="{Binding EntityName}" 
+                       LineBreakMode="NoWrap" 
+                       Style="{DynamicResource ListItemTextStyle}" 
+                       FontSize="16" />
+                                    <local:HtmlLabel Text="{Binding EntityDescription}" 
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       FontSize="13" />
+                                </StackLayout>
+                            </StackLayout>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

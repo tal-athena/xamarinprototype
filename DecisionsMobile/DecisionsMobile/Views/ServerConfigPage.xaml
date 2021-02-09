@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DecisionsMobile.Views.ServerConfigPage"             
+             Title="Configure Server">
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <!--Can only configure one server for now-->
+<!--            <Label Text="Server Name" FontSize="Small" />
+            <Entry Text="{Binding Session.ServerName, Mode=OneWay}" FontSize="Small" TextChanged="ServerName_Changed" />-->
+            <Label Text="Server URL" FontSize="Small" />
+            <StackLayout Orientation="Horizontal" Spacing="1">
+                <Label Text="https:// " FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Entry Text="{Binding ServerUri}" FontSize="Small" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>Url,CapitalizeNone</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+            </StackLayout>            
+            <Button
+                Text="Set"
+                Clicked="Next_Clicked"
+                BackgroundColor="{DynamicResource NavigationPrimary}"
+                TextColor="{DynamicResource TextColor}"
+                IsEnabled="{Binding HasServerNameAndUrl}"
+            />
+            <Button
+                Text="Restore To Default"
+                Clicked="Button_Clicked"
+                BackgroundColor="{DynamicResource NavigationPrimary}"
+                TextColor="{DynamicResource TextColor}"
+            />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

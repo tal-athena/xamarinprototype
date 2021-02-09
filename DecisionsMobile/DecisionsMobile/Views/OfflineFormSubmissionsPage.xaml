@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DecisionsMobile.Views.OfflineFormSubmissionsPage"
+             xmlns:vm="clr-namespace:DecisionsMobile.ViewModels"
+             xmlns:local="clr-namespace:CustomRenderer"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:OfflineFormSubmissionViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="iOS" Value="workflow.png"/>
+            <On Platform="Android" Value="ic_action_category.png"/>
+        </OnPlatform>
+    </ContentPage.Icon>
+    <ContentPage.Content>
+        <StackLayout>
+            <ContentView IsVisible="{Binding ShowPlaceHolder}" Padding="15">
+                <Label>No form submissions at this time.</Label>
+            </ContentView>
+            <ListView x:Name="FormSubmissionListView" 
+                ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                 HasUnevenRows="true"
+                 RefreshCommand="{Binding LoadItemsCommand}"
+                 IsPullToRefreshEnabled="true"
+                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                 CachingStrategy="RecycleElement"
+                 SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10"
+                                         Orientation="Vertical">
+                                <Label Text="{Binding WorkFlowName}"
+                                       FontSize="Large"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding StatusString}"
+                                           TextColor="{Binding StatusColor}"
+                                           HorizontalOptions="StartAndExpand"/>
+                                    <Label Text="{Binding CreatedAt}"
+                                           HorizontalOptions="EndAndExpand"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Button Text="Retry"
+                                            BackgroundColor="{DynamicResource Warn}"
+                                            HorizontalOptions="StartAndExpand"
+                                            IsVisible="{Binding IsFailed}"
+                                            Clicked="OnRetry"
+                                            VerticalOptions="Center"/>
+                                    <Button Text="Discard"
+                                            HorizontalOptions="EndAndExpand"
+                                            Clicked="OnDiscard"
+                                            VerticalOptions="Center"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

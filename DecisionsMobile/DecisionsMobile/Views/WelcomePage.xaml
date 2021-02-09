@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DecisionsMobile.Views.WelcomePage"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Padding="30">
+            <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy, Mode=OneWay}" IsVisible="{Binding IsBusy}"/>
+            <!--
+            Use case for this being a picker?... otherwise we don't need it.
+            <Label Text="Server URL" FontSize="Small" />
+            <Entry Text="{Binding Session.ServerUri}" FontSize="Small" TextChanged="Credential_Text_Changed" />-->
+            <Label Text="Welcome" 
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   Margin="0, 30"/>
+            <Label Text="Thank you for trying the Decisions mobile app. To try it, create an account or log in."
+                   FontSize="Small"
+                   Margin="0, 10"/>
+            <Label Text="Log in to your Decisions instance to unlock the full power of the platform."
+                   FontSize="Small"
+                   Margin="0, 10"/>
+
+            <Button Text="Create Account" 
+                    Clicked="CreateAccount_Clicked" 
+                    BackgroundColor="{DynamicResource NavigationPrimary}" 
+                    TextColor="{DynamicResource PrimaryButtonTextColor}"
+                    Margin="0, 15"
+                    x:Name="btnCreateAccount"/>
+
+            <Button Text="Login"
+                    Clicked="Login_Clicked"
+                    BackgroundColor="{DynamicResource NavigationPrimary}"
+                    TextColor="{DynamicResource PrimaryButtonTextColor}"
+                    Margin="0, 5"/>
+            
+            <!--
+            <Button Text="Preview as Guest" 
+                    Clicked="Preview_Clicked" 
+                    BackgroundColor="{DynamicResource LightTextColor}" 
+                    TextColor="{DynamicResource PrimaryButtonTextColor}"
+                    Margin="0, 15"/>
+            -->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

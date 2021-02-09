@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DecisionsMobile.Views.ItemDetailPage"
+             Title="{Binding Title}">
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15" >
+
+            <Label Text="{Binding Item.EntityName}" FontSize="Medium" TextColor="{DynamicResource TextColor}"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Priority:" FontSize="Small" />
+                <Label Text="{Binding Item.Priority}" FontSize="Small"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding HasDueDate}">
+                <Label Text="Due:" FontSize="Small" />
+                <Label Text="{Binding DueDate}" FontSize="Small"/>
+            </StackLayout>
+            
+            <Button Text="Work Assignment" Clicked="WorkAssignment_Clicked"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="CreatedBy By:" FontSize="Small" />
+                <Label Text="{Binding Item.CreatedBy}" FontSize="Small"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Created:" FontSize="Small" />
+                <Label Text="{Binding CreatedOnDate}" FontSize="Small"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding HasNotes}">
+                <Label Text="Notes:" FontSize="Small" />
+                <Label Text="{Binding Item.Notes}" FontSize="Small" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding HasStep}">
+                <Label Text="Step:" FontSize="Small" />
+                <Label Text="{Binding Item.StepName}" FontSize="Small" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

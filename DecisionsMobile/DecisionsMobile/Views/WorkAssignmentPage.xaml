@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DecisionsMobile.Views.WorkAssignmentPage"
+             Title="{Binding Title}"> 
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsBusy}">
+                <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy, Mode=OneWay}"/>
+            </ContentView>
+            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsWebViewSuccess}">
+                <WebView x:Name="WebView" VerticalOptions="FillAndExpand" Source="{Binding Url, Mode=OneWay}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsWebViewFail}" >
+                <Image Source="offline.png"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="120"
+                    HeightRequest="120"
+                    Opacity="0.5"/>
+                <Label Text="You're offline."
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    FontSize="32"/>
+                <Button Text="Retry"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Clicked="Button_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

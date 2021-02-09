@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DecisionsMobile.Views.LoginPage"
+             Title="Log In"
+             > 
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>-->
+    <ContentPage.Content>
+        <StackLayout Padding="30">
+            <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy, Mode=OneWay}" IsVisible="{Binding IsBusy}"/>
+            <!--
+            Use case for this being a picker?... otherwise we don't need it.
+            <Label Text="Server URL" FontSize="Small" />
+            <Entry Text="{Binding Session.ServerUri}" FontSize="Small" TextChanged="Credential_Text_Changed" />-->           
+            <Label Text="Email" FontSize="Small" />
+            <Entry Text="{Binding Session.UserName}" FontSize="Small" TextChanged="Credential_Text_Changed" >
+                <Entry.Keyboard>
+                    <Keyboard x:FactoryMethod="Create">
+                        <x:Arguments>
+                            <KeyboardFlags>Email,CapitalizeNone</KeyboardFlags>
+                        </x:Arguments>
+                    </Keyboard>
+                </Entry.Keyboard>
+            </Entry>
+            <Label Text="Password" FontSize="Small" />
+            <Entry Text="{Binding Session.Password}"
+                FontSize="Small"
+                IsPassword="True"
+                TextChanged="Credential_Text_Changed"
+            />
+            <Label
+                Text="{Binding FeedbackMessage}"
+                TextColor="{DynamicResource Warn}"
+                IsVisible="{Binding ShowFeedback, Mode=OneWay}"
+            />
+            
+            <Label Text="Instance URL" FontSize="Small" Margin="0, 30, 0, 0"/>
+            <StackLayout Orientation="Horizontal" Spacing="1">
+                <Label Text="https:// " FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Entry Text="{Binding ServerUri}" FontSize="Small" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Placeholder="{Binding DefaultServerUri}">
+                    <Entry.Keyboard>
+                        <Keyboard x:FactoryMethod="Create">
+                            <x:Arguments>
+                                <KeyboardFlags>Url,CapitalizeNone</KeyboardFlags>
+                            </x:Arguments>
+                        </Keyboard>
+                    </Entry.Keyboard>
+                </Entry>
+            </StackLayout>
+            <Button Text="Login"
+                    Clicked="Login_Clicked"
+                    BackgroundColor="{DynamicResource NavigationPrimary}" TextColor="{DynamicResource PrimaryButtonTextColor}"
+                    IsEnabled="{Binding ReadyForLogin}"
+                    Margin="0, 20"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

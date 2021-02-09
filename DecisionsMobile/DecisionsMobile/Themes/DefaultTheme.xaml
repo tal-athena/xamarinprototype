@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DecisionsMobile.Themes.DefaultTheme">
+    
+    <Color x:Key="NavigationPrimary">#0081C2</Color>
+    <Color x:Key="NavigationSecondary">#215C83</Color>
+    <Color x:Key="Warn">#FF3333</Color>
+    <Color x:Key="TextColor">#000</Color>
+    <Color x:Key="PrimaryButtonTextColor">#fff</Color>    
+    <Color x:Key="Affirmation">Green</Color>
+    <Color x:Key="WarnLight">Pink</Color>
+    <Color x:Key="MainMenuPageGridBackColor">#03A9F4</Color>
+    <!--Page Level Resources: Compatibile with Xamarin Live Player -->
+    <Color x:Key="Primary">#0081C2</Color>
+    <Color x:Key="Accent">#FF8000</Color>
+    <Color x:Key="LightTextColor">#999999</Color>
+
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationPrimary}" />
+        <Setter Property="BarTextColor" Value="White" />
+    </Style>
+</ResourceDictionary>
